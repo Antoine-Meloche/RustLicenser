@@ -1,0 +1,61 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: white;
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  gap: 25px;
+}
+
+section#license-params {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 10px 15px;
+  background-color: #484848;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+label {
+  margin-left: 25px;
+}
+
+select {
+  height: 38px;
+  width: 100%;
+  border-radius: 10px !important;
+  border: none;
+  background: #484848;
+  color: white;
+  padding: 0 15px;
+}
+
+button {
+  background-color: #484848;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  color: white;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+}

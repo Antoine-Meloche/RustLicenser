@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rust Licenser</title>
+  <script type="module" src="/src/main.ts" defer></script>
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+
+<body>
+  <main>
+    <select name="licenses" id="licenses">
+      <option value="gplv3">GPL-v3</option>
+      <option value="mit">MIT</option>
+    </select>
+
+    <section id="license-params">
+      <div class="hcontainer">
+        <label for="copy-name">Name(s) for copyright notices</label>
+        <button id="add-name">+</button>
+      </div>
+      <input name="copy-name" type="text" placeholder="John Doe" />
+    </section>
+  </main>
+</body>
+
+</html>
