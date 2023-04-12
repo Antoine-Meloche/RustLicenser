@@ -1,46 +1,56 @@
 import { invoke } from "@tauri-apps/api/tauri";
 
-let greetInputEl: HTMLInputElement | null;
-let greetMsgEl: HTMLElement | null;
 let licenseSelect: HTMLSelectElement | null;
 let licenseParams: HTMLElement | null;
 let addNameBtn: HTMLButtonElement | null;
-
-async function greet() {
-  if (greetMsgEl && greetInputEl) {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    greetMsgEl.textContent = await invoke("greet", {
-      name: greetInputEl.value,
-    });
-  }
-}
+let folderSelBtn: HTMLButtonElement | null;
 
 window.addEventListener("DOMContentLoaded", () => {
   licenseSelect = document.querySelector("#licenses");
   licenseParams = document.querySelector("#license-params");
   addNameBtn = document.querySelector("#add-name");
+  folderSelBtn = document.querySelector("#folder-select");
 
   licenseSelect?.addEventListener("change", () => {
     if (licenseParams !== null) {
       if (licenseSelect?.value == "gplv3") {
-        licenseParams.innerHTML = `
-          <div class="hcontainer">
-            <label for="copy-name">Name(s) for copyright notices</label>
-            <button id="add-name">+</button>
-          </div>
-        `;
+        var hcon = document.createElement("div");
+        hcon.classList.add("hcontainer");
+
+        var label = document.createElement("label");
+        label.htmlFor = "copy-name";
+        label.innerHTML = "Name(s) for copyright notices";
+        hcon.appendChild(label);
+
+        var btn = document.createElement("button");
+        btn.id = "add-name";
+        btn.innerHTML = "+";
+        btn.onclick = addNameInput;
+        hcon.appendChild(btn);
+
+        licenseParams.appendChild(hcon);
+        addNameInput();
       } else {
         licenseParams.innerHTML = "";
       }
     }
   });
 
-  addNameBtn?.addEventListener("click", () => {
-    if (licenseParams !== null) {
-      licenseParams.innerHTML += `
-        <input name="copy-name" type="text" placeholder="John Doe" />
-      `;
-    }
-  });
-
+  addNameBtn?.addEventListener("click", addNameInput);
+  folderSelBtn?.addEventListener("click", selectFolder);
 });
+
+function addNameInput() {
+  if (licenseParams !== null) {
+    var ele = document.createElement("input");
+    ele.name = "copy-name";
+    ele.type = "text";
+    ele.placeholder = "John Doe";
+    licenseParams.appendChild(ele);
+  }
+}
+
+async function selectFolder() {
+  let files = await invoke("open_folder", {});
+  console.log(files);
+}
